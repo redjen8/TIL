@@ -2,6 +2,7 @@
 title: "Java String이 Immutable한 이유"
 date: 2022-12-13T16:45:27+09:00
 draft: false
+author: redjen
 ---
 
 # Java String이 Immutable한 이유

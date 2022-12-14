@@ -2,6 +2,7 @@
 title: "Kafka Cluster Urp란?"
 date: 2022-12-14T16:17:18+09:00
 draft: false
+author: redjen
 ---
 
 # Kafka Cluster URP란? 
