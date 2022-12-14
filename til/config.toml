@@ -1,4 +1,4 @@
-baseURL = 'http://redjen8.github.io/TIL'
+baseURL = 'http://redjen8.github.io'
 languageCode = 'ko-KR'
 title = 'Redjen TIL'
 theme = 'LoveIt'
