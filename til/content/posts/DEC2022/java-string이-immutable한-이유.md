@@ -1,7 +1,7 @@
 ---
 title: "Java String이 Immutable한 이유"
 date: 2022-12-13T16:45:27+09:00
-draft: true
+draft: false
 ---
 
 # Java String이 Immutable한 이유
@@ -17,13 +17,14 @@ draft: true
 ## 1. 캐싱했을 때 이점이 있어서
 
 String은 가장 많이 쓰이는 data structure
-그래서 캐싱했을 때 다른 객체보다 이점이 크다
+그래서 캐싱했을 때 다른 객체보다 이점이 크다.
+
 동일한 String 객체 "Hello, world!" 가 있을 때
 ```
 String s1 = "Hello, world!";
 String s2 = "Hello, world!";
 ```
-s1과 s2는 서로 같은 힙 공간의 주소를 가르킨다. 그래서 s1 == s2 는 true
+s1과 s2는 서로 같은 힙 공간의 주소를 가르킨다. 그래서 **s1 == s2는 true**이다. 
 그런데 
 ```
 String s3 = new String("Hello, world!");
@@ -35,7 +36,7 @@ String s3 = new String("Hello, world!");
 String 형이 mutable 하다면, 데이터를 업데이트 했을 때 안전한 정보를 받았을 것이라는 보장을 할 수가 없음
 SQL injection과 같은 공격이 더 잘 생길 것 같긴 하다
 기존 String 쿼리를 뭔가 수정할 수 있다고 했을 때 발생하는 문제들..
-C와 같은 언어에서 쿼리를 작성한다고 했을 때 char 배열에서 인덱스 바꿔가면서 쿼리를 수정할 수 있지 않나 그런 예시인듯?
+C와 같은 언어에서 쿼리를 작성한다고 했을 때 char 배열에서 인덱스 바꿔가면서 쿼리를 수정할 수 있지 않나? 그런 예시인듯?
 
 ## 3. thread safe한 자료형이 가지는 이점 때문
 
