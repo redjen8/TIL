@@ -1,7 +1,7 @@
 ---
 title: "왜 Python은 GIL을 사용할까?"
 date: 2022-12-15T18:00:28+09:00
-draft: true
+draft: false
 author : redjen
 ---
 
