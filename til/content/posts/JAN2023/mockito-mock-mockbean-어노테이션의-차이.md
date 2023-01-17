@@ -1,5 +1,5 @@
 ---
-title: "Mockito Mock Mockbean 어노테이션의 차이"
+title: "Mockito의 Mock, Mockbean 어노테이션의 차이"
 date: 2023-01-17T22:09:25+09:00
 draft: false
 author: redjen
