@@ -482,7 +482,7 @@ hasCJKlanguage = true
         enable = true
         # owner/repo
         repo = "redjen8/TIL-utterances"
-        issueTerm = "pathname"
+        issueTerm = "title"
         label = ""
         lightTheme = "github-light"
         darkTheme = "github-dark"
