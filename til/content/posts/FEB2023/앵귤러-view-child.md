@@ -1,7 +1,8 @@
 ---
 title: "앵귤러 View Child"
 date: 2023-02-23T17:41:49+09:00
-draft: true
+draft: false
+author: redjen
 ---
 
 프론트엔드 작업을 하면서 가장 고민이 많이 되고 어렵지만 또 재미있는 개발은 컴포넌트 공통화인 것 같다.
