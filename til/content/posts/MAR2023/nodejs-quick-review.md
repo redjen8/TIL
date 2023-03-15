@@ -50,7 +50,7 @@ Node.js 어플리케이션은 그 다음에 이벤트 루프에 진입하여,
 
 ### 어떤 코드가 워커 풀에서 동작하나?
 
-Node.js의 워커 풀은 전반적인 task들에 대한 submission API를 제공하는 libuv ([공식 문서]()) 로 구현된다. 
+Node.js의 워커 풀은 전반적인 task들에 대한 submission API를 제공하는 libuv ([공식 문서](http://docs.libuv.org/en/v1.x/threadpool.html)) 로 구현된다. 
 
 Node.js는 워커 풀을 값 비싼 작업들을 처리하기 위해 사용한다.
 - 워커 풀은 운영체제 레벨에서 비동기 버전을 제공하지 않는 IO 작업도 수행한다.
