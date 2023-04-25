@@ -3,5 +3,5 @@
 	url = https://github.com/dillonzq/LoveIt.git
 [submodule "til/public"]
 	path = til/public
-	url = http://github.com/redjen8/redjen8.github.io.git
+	url = https://github.com/redjen8/redjen8.github.io.git
 	branch = master
