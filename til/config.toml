@@ -139,10 +139,10 @@ hasCJKlanguage = true
   # Search config
   # 搜索配置
   [params.search]
-    enable = true
+    enable = false
     # type of search engine ["lunr", "algolia"]
     # 搜索引擎的类型 ["lunr", "algolia"]
-    type = "algolia"
+    type = "lunr"
     # max index length of the chunked content
     # 文章内容最长索引长度
     contentLength = 4000
@@ -163,7 +163,7 @@ hasCJKlanguage = true
     absoluteURL = false
     [params.search.algolia]
       index = ""
-      appID = "K4YXCJL6OT"
+      appID = ""
       searchKey = ""
 
   # Home page config
