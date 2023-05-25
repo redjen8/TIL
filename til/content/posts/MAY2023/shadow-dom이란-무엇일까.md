@@ -87,10 +87,10 @@ https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af
 class MyWebComponent extends HTMLElement {  
     constructor() {  
         super();  
-        **this._root = this.attachShadow({ mode: "closed" });**  
+        this._root = this.attachShadow({ mode: "closed" });
     }  
     connectedCallback() {  
-        **this._root**.innerHTML = `  
+        this._root.innerHTML = `  
             <p>I'm in the closed Shadow Root!</p>  
         `;  
     }  
