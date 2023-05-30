@@ -19,8 +19,8 @@ https://developer.mozilla.org/ko/docs/Web/API/Web_components/Using_shadow_DOM
 
 shadow DOM은 숨겨진 DOM 트리가 통상적인 DOM 트리에 속한 요소에 부착될 수 있도록 한다.
 - shadow DOM 트리는 shadow root로부터 시작한다.
-- shadow DOM 트리는 원하는 모든 element 안에 부착할 수 있다.
-- shadow DOM 트리를 부착하는 방법은 일반 DOM을 부탁하는 방법과 동일하다.
+- shadow DOM 트리는 원하는 모든 element 안에 부착될 수 있다.
+- shadow DOM 트리를 부착하는 방법은 일반 DOM을 부착하는 방법과 동일하다.
 
 https://developer.mozilla.org/ko/docs/Web/API/Web_components/Using_shadow_DOM/shadowdom.svg
 
