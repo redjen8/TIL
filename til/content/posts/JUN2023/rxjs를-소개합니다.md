@@ -1,7 +1,8 @@
 ---
 title: "Rxjs를 소개합니다"
 date: 2023-06-12T22:07:17+09:00
-draft: true
+draft: false
+author: redjen
 ---
 
 ## Reactive Streams와 ReactiveX에 대해
