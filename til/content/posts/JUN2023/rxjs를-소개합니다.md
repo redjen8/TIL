@@ -50,7 +50,7 @@ Iterator 패턴에서 컨슈머가 프로듀서로부터 값을 풀하는 것과
 1. 프로듀셔가 더 이상 사용할 수 없는 데이터가 없는 상태임을 컨슈머에게 알려줄 수 있다.
 2. 프로듀서가 컨슈머에게 값을 전달하던 중 오류가 발생했음를 알릴 수 있다. (Iterable은 iteration 도중 에러가 발생하면 Exception을 던지지만, Observable은 옵저버의 `onError` 메서드를 호출한다)
 
-RxJava, RxJS, Rx.NET, RxScala와 같이 다양한 언어들을 위한 포팅이 완료된 상태이다.
+RxJava, RxJS, Rx.NET, RxScala와 같이 다양한 언어들을 위한 포팅이 완료되어 널리 사용중이다.
 
 ## FE에의 적용
 
@@ -149,9 +149,10 @@ FE 개발을 하다 보면 흔히 마주치게 되는 기능 구현에 대한 �
 - 마우스 스크롤 했을 때 새로운 아이템 목록을 불러오게 해주세요.
 
 공통점은 무엇인가? ~ 했을 때 (if) ~ 해주세요. 
+
 js는 동기적인 언어이지만, 요구 사항들이 비동기처리로 이루어져야 하기 때문에 우리는 이벤트 + Promise의 조합을 써왔다.
 
-하지만 요구 사항이 복잡해지고, 인터랙션해야 하는 다양한 컴포넌트들이 화면에 계속해서 추가된다면 Promise에 + Promise에.. 코드가 복잡해지고 따라서 상태 관리도 복잡해지는 경우가 많다.
+하지만 요구 사항이 복잡해지고, 인터랙션해야 하는 다양한 컴포넌트들이 화면에 계속해서 추가된다면 Promise에 + Promise에.. 코드가 복잡해지고 따라서 상태 관리도 복잡해지는 경우가 많다. 
 
 이처럼 비동기 처리할 이벤트가 여러 개라면, rxjs를 사용해서 우아하게 요구사항을 처리할 수 있다.
 - 채팅방에 들어오는 이벤트를 `Observable`로 만들어, 현재 들어와 있는 인원이 5명이라면 (`filter`) 라벨 표시 
@@ -160,7 +161,7 @@ js는 동기적인 언어이지만, 요구 사항들이 비동기처리로 이�
 
 https://www.learnrxjs.io/learn-rxjs/recipes
 
-앵귤러 + RxJS 폼 미쳤다!! 특수한 경우에 대한 예시도 이렇게 잘 구비되어 있다
+앵귤러 + RxJS 폼 미쳤다! 특수한 경우에 대한 예시도 이렇게 잘 구비되어 있다.
 
 #### 앵귤러와 RxJS를 잘 사용해서 debounce 이벤트를 잘 구현한 예시
 
@@ -177,7 +178,6 @@ import { HttpClient } from '@angular/common/http';
     template: `
         <input type="text" class="ml-2" [ngModel]="''" (ngModelChange)="onTextChange($event)" />
 
-        <!-- async 파이프로 있어보이게 -->
         <div *ngIf="(searchResult$ | async) as searchResult">
             <h2>저장소 목록</h2>
 
@@ -222,7 +222,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-#### 어떤 Operator를 써야 할까
+#### 참고) 어떤 Operator를 써야 할까
 
 https://rxjs.dev/operator-decision-tree
 
