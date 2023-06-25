@@ -132,23 +132,44 @@ useEffect(() => {
 앵귤러와 rxjs를 적절히 사용한다면.. (절대 두 라이브러리 / 프레임워크 중 어떤 것이 더 좋다고 얘기하는 것이 아니다)
 
 ```ts
-const mySubject$: Subject<number> = new Subject<number>;
+export class AppComponent implements OnInit, OnDestroy {
 
-get counter$(): Observable<number> {
-  return this.mySubject$.pipe(
-    scan((acc, delta) => delta ? acc + delta : 0, 0),
-    tap((value) => *you can use the total accumulator so far here*),
-    debounceTime(1000),
-  );
+  subscription!: Subscription
+
+  private click$ = new Subject<void>()
+
+  count$: Observable<number> = this.click$.pipe(
+    scan(previous => previous + 1, 0),
+    tap(count => (count % 3 === 0) ? alert("!!!") : console.log(count))
+  )
+
+  ngOnInit(): void {
+    this.subscription = this.count$.subscribe()
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
+  }
+
+  onClick() {
+    this.click$.next()
+  }
 }
 ```
+
+- `scan` operator는 상태를 캡슐화하고 관리하기 유용한 함수이다.
+  - [설명](https://rxjs.dev/api/index/function/scan)
+  - accumulator 함수를 사용하여 초기 상태로부터 다음 값을 도출해낼 수 있다.
+- `tap` operator는 개발자가 부수적인 효과를 특정한 위치에서 부여할 수 있는 함수이다.
+  - `map`이나 `mergeMap` 내부에서 이를 행할 수도 있지만, 매핑 함수를 순수하지 못하게 만들 때 `tap`을 사용한다.
+  - [설명](https://rxjs.dev/api/operators/tap)
 
 FE 개발을 하다 보면 흔히 마주치게 되는 기능 구현에 대한 요구사항은 보통 다음과 같은 것들이다.
 - 채팅방에 5명 이상이 들어온다면 '현재 인기 있는 채팅방' 라벨을 표시하게 해주세요.
 - 실시간 차트에서 1분 단위로 실시간 데이터를 가져오고, 특정 값이 변화했을 때 토스트 팝업을 띄워주세요.
 - 마우스 스크롤 했을 때 새로운 아이템 목록을 불러오게 해주세요.
 
-공통점은 무엇인가? ~ 했을 때 (if) ~ 해주세요. 
+> 공통점은 무엇인가? ~ 했을 때 (if) ~ 해주세요. 
 
 js는 동기적인 언어이지만, 요구 사항들이 비동기처리로 이루어져야 하기 때문에 우리는 이벤트 + Promise의 조합을 써왔다.
 
