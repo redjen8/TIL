@@ -158,8 +158,8 @@ export class AppComponent implements OnInit, OnDestroy {
 ```
 
 - `scan` operator는 상태를 캡슐화하고 관리하기 유용한 함수이다.
-  - [설명](https://rxjs.dev/api/index/function/scan)
   - accumulator 함수를 사용하여 초기 상태로부터 다음 값을 도출해낼 수 있다.
+  - [설명](https://rxjs.dev/api/index/function/scan)
 - `tap` operator는 개발자가 부수적인 효과를 특정한 위치에서 부여할 수 있는 함수이다.
   - `map`이나 `mergeMap` 내부에서 이를 행할 수도 있지만, 매핑 함수를 순수하지 못하게 만들 때 `tap`을 사용한다.
   - [설명](https://rxjs.dev/api/operators/tap)
