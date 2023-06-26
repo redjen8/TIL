@@ -62,6 +62,54 @@ https://yozm.wishket.com/magazine/detail/1753/
 
 https://angular.io/guide/rx-library
 
+#### 앵귤러에서의 `Reactive Form` vs `Template Form`
+
+앵귤러는 다들 알다시피 양방향 바인딩 문법이 존재한다. 하지만 앵귤러의 양방향 바인딩은 사실 prop과 prop 변화에 대한 이벤트 핸들러를 내부적으로 등록해주는, 실제로는 단방향 바인딩 X2로써 동작한다.
+
+결국 우리가 아는 `ngModel`을 사용한 양방향 바인딩은 '사용자 인터랙션'을 다루기 위한 이벤트 핸들러의 한 종류로 볼 수 있는 것이다.
+
+그런데 앵귤러의 `ReactiveFormsModule`을 다루다 보면 `ngModel`을 사용했을 때 deprecated 되었다는 메시지가 뜬다.
+
+https://angular.io/api/forms/FormControlName#use-with-ngmodel-is-deprecated
+
+앵귤러 11버전 부터는 reactive forms 내부에서 `ngModel`을 deprecate 처리 시켰다.. 왤까?
+- `ReactiveFormsModule`과 `ngModel`을 같이 사용했을 때 번들 사이즈 크기 증가
+- **두 가지 방법의 철학이 서로 상충되는 부분이 있고, 이는 피하는 것이 자연스럽다**
+- 복잡한 템플릿 폼에서 타이밍 관련한 문제가 있었다.
+  - `ngModel` 자체가 직접적인 바인딩을 가지고 있는 것이 아니고, 바인딩 자체가 한 틱 안에 일어나지 않는다면 `observable`을 올바른 타이밍에 subscribe해서 form을 변화시키기 어렵다.
+
+그렇다면, `Observable`을 활용하는 `ReactiveFormsModule`은 `FormsModule`과 비교하였을 때 어떤 이점이 있을까?
+
+- 다들 알듯이 엘리먼트가 많이 존재하지 않는 Form을 만드는 일은 그리 어렵지 않다.
+- 하지만 입력 받는 사용자의 정보가 점점 많아진다면 어떨까?
+- 게다가 여러 엘리먼트들에 걸친 validation 로직을 작성한다고 가정해보자.
+  - validator 로직을 분리하기 쉬울까? 여러 엘리먼트에 입력 받는 데이터의 타입 자체도 다 다르다면, 공통화하기 매우 어렵다
+
+https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/
+
+1. Reactive Forms를 사용한다면 훨씬 깨끗하고 프레젠테이션 로직에 집중하여 폼 모듈을 개발할 수 있다.
+2. 폼 템플릿 안에 다양한 비즈니스 validation 규칙들이 존재한다면, 이를 컴포넌트 클래스로 분리하기 쉬워진다. (테스트가 쉬워지는 것은 덤이다)
+3. 때문에 커스텀 validator를 개발하기 쉽다 - 함수를 정의하고 설정 안에 끼워넣기만 하면 된다.
+
+```ts
+this.form.valueChanges
+    .pipe(
+        map((value) => {
+            value.firstName = value.firstName.toUpperCase();
+            return value;
+        }),
+        filter((value) => this.form.valid)
+    )
+    .subscribe((value) => {
+           console.log("Reactive Form valid value: vm = ",
+                       JSON.stringify(value));
+        });
+```
+
+> 때문에 템플릿이 복잡해지고, 더 많은 비즈니스 로직을 넣어야 한다면 `ReactiveFormsModule` 사용은 선택이 아닌 필수이다. 
+
+### Observable로부터 시작하는 RxJS 뽀개기  
+
 #### Promise로 Observable 만들기
 
 ```ts
