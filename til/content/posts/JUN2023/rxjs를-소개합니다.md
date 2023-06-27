@@ -64,7 +64,7 @@ https://angular.io/guide/rx-library
 
 #### 앵귤러에서의 `Reactive Form` vs `Template Form`
 
-앵귤러는 다들 알다시피 양방향 바인딩 문법이 존재한다. 하지만 앵귤러의 양방향 바인딩은 사실 prop과 prop 변화에 대한 이벤트 핸들러를 내부적으로 등록해주는, 실제로는 단방향 바인딩 X2로써 동작한다.
+앵귤러는 다들 알다시피 양방향 바인딩 문법이 존재한다. 하지만 앵귤러의 양방향 바인딩은 사실 prop과 prop 변화에 대한 이벤트 핸들러를 내부적으로 등록해주는, 실제로는 단방향 바인딩*2 로써 동작한다.
 
 결국 우리가 아는 `ngModel`을 사용한 양방향 바인딩은 '사용자 인터랙션'을 다루기 위한 이벤트 핸들러의 한 종류로 볼 수 있는 것이다.
 
@@ -74,7 +74,7 @@ https://angular.io/api/forms/FormControlName#use-with-ngmodel-is-deprecated
 
 앵귤러 11버전 부터는 reactive forms 내부에서 `ngModel`을 deprecate 처리 시켰다.. 왤까?
 - `ReactiveFormsModule`과 `ngModel`을 같이 사용했을 때 번들 사이즈 크기 증가
-- **두 가지 방법의 철학이 서로 상충되는 부분이 있고, 이는 피하는 것이 자연스럽다**
+- **두 가지 방법의 철학이 서로 상충되는 부분이 있고, 이는 피하는 것이 자연스럽다.**
 - 복잡한 템플릿 폼에서 타이밍 관련한 문제가 있었다.
   - `ngModel` 자체가 직접적인 바인딩을 가지고 있는 것이 아니고, 바인딩 자체가 한 틱 안에 일어나지 않는다면 `observable`을 올바른 타이밍에 subscribe해서 form을 변화시키기 어렵다.
 
@@ -209,7 +209,7 @@ export class AppComponent implements OnInit, OnDestroy {
   - accumulator 함수를 사용하여 초기 상태로부터 다음 값을 도출해낼 수 있다.
   - [설명](https://rxjs.dev/api/index/function/scan)
 - `tap` operator는 개발자가 부수적인 효과를 특정한 위치에서 부여할 수 있는 함수이다.
-  - `map`이나 `mergeMap` 내부에서 이를 행할 수도 있지만, 매핑 함수를 순수하지 못하게 만들 때 `tap`을 사용한다.
+  - `map`이나 `mergeMap` 내부에서 이를 행할 수도 있지만, 이들의 사용이 매핑 함수를 순수하지 못하게 만들 때 `tap`을 사용한다.
   - [설명](https://rxjs.dev/api/operators/tap)
 
 FE 개발을 하다 보면 흔히 마주치게 되는 기능 구현에 대한 요구사항은 보통 다음과 같은 것들이다.
@@ -225,7 +225,7 @@ js는 동기적인 언어이지만, 요구 사항들이 비동기처리로 이�
 
 이처럼 비동기 처리할 이벤트가 여러 개라면, rxjs를 사용해서 우아하게 요구사항을 처리할 수 있다.
 - 채팅방에 들어오는 이벤트를 `Observable`로 만들어, 현재 들어와 있는 인원이 5명이라면 (`filter`) 라벨 표시 
-- 실시간 차트에서 1분 단위로 실시간 데이터를 가져오고 (counter를 통한 `Observable` 생성)+ 특정 값이 변화했을 때 (특정 값에 대한 `Observable`) 특정 동작 행하기
+- 실시간 차트에서 1분 단위로 실시간 데이터를 가져오고 (서버에서 받아오는 reactive stream을 통한 `Observable` 생성)+ 특정 값이 변화했을 때 (특정 값에 대한 `Observable`) 특정 동작 행하기
 - 마우스 스크롤 이벤트로부터 `Observable`을 만들어, `HttpService` 특정 메서드 실행
 
 https://www.learnrxjs.io/learn-rxjs/recipes
