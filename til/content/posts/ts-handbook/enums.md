@@ -215,6 +215,8 @@ declare enum Enum {
 
 - 일반적인 열거형에서 초기화되지 않은 멤버가 상수로 간주하는 멤버 뒤에 있다면 해당 멤버도 상수로 간주
 - 하지만 ambient 열거형에서 초기화되지 않은 멤버는 항상 계산된 멤버로 간주된다
+- 값 집합을 열거형으로 `export` 할 때 사용한다.
+- https://dev.to/zapkub/how-to-proper-use-ambient-enum-from-definition-file-5ddg
 
 ### Java Enum과의 비교
 
