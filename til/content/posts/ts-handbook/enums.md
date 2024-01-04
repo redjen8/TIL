@@ -215,3 +215,63 @@ declare enum Enum {
 
 - 일반적인 열거형에서 초기화되지 않은 멤버가 상수로 간주하는 멤버 뒤에 있다면 해당 멤버도 상수로 간주
 - 하지만 ambient 열거형에서 초기화되지 않은 멤버는 항상 계산된 멤버로 간주된다
+
+### Java Enum과의 비교
+
+```java
+enum InstanceType {
+	REAL("REAL"),
+	DEV("DEV"),
+	LOCAL("LOCAL");
+	private final String code;
+  
+	InstanceType(String instanceType) {
+		this.code = instanceType;
+  	}
+  
+	public String getCode() {
+		return "code: " + code;
+    }
+    
+    public boolean isExternal() {
+        if (code.equals("REAL")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+class Main {
+	public static void main(String[] args) {
+      	InstanceType real = InstanceType.REAL;
+    	System.out.println(real.getCode());
+    	System.out.println(real.isExternal());
+	}
+}
+```
+
+자바에서 Enum은 내부적으로 `java.lang.Enum` 클래스를 상속 받는 클래스이기 때문에 위처럼 내부 메서드를 가지는 것이 가능하다.
+- 때문에 자바의 Enum 내부 필드는 `static final`이 된다.
+
+```ts
+enum InstanceType {
+    REAL = "REAL",
+    DEV = "DEV",
+    LOCAL = "LOCAL"  
+}
+
+const isExternal = (instanceType: InstanceType) => {
+    if (instanceType === InstanceType.REAL) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(isExternal(InstanceType.DEV));
+console.log(isExternal(InstanceType.REAL));
+```
+
+반면 타입스크립트는 내부 메서드 지원이 되지 않고, 순수한 값의 집합으로만 표현 가능하다.
+- 때문에 값에 대한 집합과 메서드 일체를 분리하여 작성해야 한다.
