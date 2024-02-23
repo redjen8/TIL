@@ -1,5 +1,5 @@
 ---
-title: "타입스크립트 12장 - 판별 유니온"
+title: "타입스크립트 핸드북 12장 - 판별 유니온"
 date: 2024-02-13T21:58:17+09:00
 draft: false
 author: redjen
